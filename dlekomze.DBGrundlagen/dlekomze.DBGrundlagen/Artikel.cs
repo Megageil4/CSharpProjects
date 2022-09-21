@@ -12,12 +12,12 @@ namespace dlekomze.DBGrundlagen
 		public string? Code { get; set; }
 		public string? Bezeichnung { get; set; }
 		public decimal Verkaufspreis { get; set; }
-		public int Wgrid { get; set; }
+		public int? Wgrid { get; set; }
 		public DateTime ImAngebotSeit { get; set; }
 		public DateTime? PreisErhoetAm { get; set; }
-		public int Lagerbestand { get; set; }
+		public int? Lagerbestand { get; set; }
 
-		public Artikel(int artikelId, string? code, string? bezeichnung, decimal verkaufspreis, int wgrid, DateTime imAngebotSeit, DateTime? preisErhoetAm, int lagerbestand)
+		public Artikel(int artikelId, string? code, string? bezeichnung, decimal verkaufspreis, int? wgrid, DateTime imAngebotSeit, DateTime? preisErhoetAm, int? lagerbestand)
 		{
 			ArtikelId = artikelId;
 			this.Code = code;
@@ -34,5 +34,10 @@ namespace dlekomze.DBGrundlagen
 	
 		public Artikel(int artikelId, string? code, string? bezeichnung, decimal verkaufspreis, DateTime imAngebotSeit)
 		:this(artikelId, code, bezeichnung, verkaufspreis, 0, imAngebotSeit,null, 0) {}
+
+		public override string ToString()
+		{
+			return $"{ArtikelId,-9}|{Code,-7}|{Bezeichnung,-26}|{Verkaufspreis,-5:N2}|{(PreisErhoetAm == null ? "null" : PreisErhoetAm)}";
+		}
 	}
 }
