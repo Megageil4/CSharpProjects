@@ -11,7 +11,8 @@ namespace dlekomze.DBGrundlagen
 	{
 		public static void SpeichernArtikelliste(string dateipfad, List<Artikel> artikelliste)
 		{
-			//JsonSerializer
+			byte[] jsonUtf8Bytes = JsonSerializer.SerializeToUtf8Bytes(artikelliste);
+			File.WriteAllBytes(dateipfad, jsonUtf8Bytes);
 		}
 	}
 }
