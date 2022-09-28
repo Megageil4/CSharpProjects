@@ -28,20 +28,7 @@ namespace dlekomze.DBGrundlagen
 								  "verkaufspreis,wgrid,imAngebotSeit," +
 								  "preisErhoehtAm,lagerbestand FROM beispiele.artikel";
 				var reader = cmd.ExecuteReader();
-				while (reader.Read())
-				{
-					Artikel art = new Artikel(
-						reader.GetInt32(0),
-						reader.GetString(1),
-						reader.GetString(2),
-						reader.GetDecimal(3),
-						reader.IsDBNull(4) ? null : reader.GetInt32(4),
-						reader.GetDateTime(5),
-						reader.IsDBNull(6) ? null : reader.GetDateTime(6),
-						reader.IsDBNull(7) ? null : reader.GetInt32(7)
-						);
-					artikel.Add(art);
-				}
+				ReadArtikel(artikel,reader);
 				connection.Close();
 			}
 			return artikel;
@@ -60,23 +47,28 @@ namespace dlekomze.DBGrundlagen
 								  "WHERE wgrid = @wgrid";
 				cmd.Parameters.AddWithValue("wgrid", wgrid);
 				var reader = cmd.ExecuteReader();
-				while (reader.Read())
-				{
-					Artikel art = new Artikel(
-						reader.GetInt32(0),
-						reader.GetString(1),
-						reader.GetString(2),
-						reader.GetDecimal(3),
-						reader.IsDBNull(4) ? null : reader.GetInt32(4),
-						reader.GetDateTime(5),
-						reader.IsDBNull(6) ? null : reader.GetDateTime(6),
-						reader.IsDBNull(7) ? null : reader.GetInt32(7)
-						);
-					artikel.Add(art);
-				}
+				ReadArtikel(artikel, reader);
 				connection.Close();
 			}
 			return artikel;
+		}
+
+		private static void ReadArtikel(List<Artikel> artikel, SqlDataReader reader)
+		{
+			while (reader.Read())
+			{
+				Artikel art = new Artikel(
+					reader.GetInt32(0),
+					reader.GetString(1),
+					reader.GetString(2),
+					reader.GetDecimal(3),
+					reader.IsDBNull(4) ? null : reader.GetInt32(4),
+					reader.GetDateTime(5),
+					reader.IsDBNull(6) ? null : reader.GetDateTime(6),
+					reader.IsDBNull(7) ? null : reader.GetInt32(7)
+					);
+				artikel.Add(art);
+			}
 		}
 
 		public void AendernVerkaufspreis(int artikelID, decimal neuerVerkaufspreis)

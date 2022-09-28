@@ -30,7 +30,7 @@ namespace dlekomze.DBGrundlagen
 		}
 
 		public Artikel() 
-		: this(0,"0","A",0,0,DateTime.Now,DateTime.Now,0) { }
+		: this(0,"","",0,0,DateTime.Now,DateTime.Now,0) { }
 	
 		public Artikel(int artikelId, string? code, string? bezeichnung, decimal verkaufspreis, DateTime imAngebotSeit)
 		:this(artikelId, code, bezeichnung, verkaufspreis, 0, imAngebotSeit,null, 0) {}
