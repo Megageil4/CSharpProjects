@@ -7,7 +7,7 @@ if (eingabe.IsNullOrEmpy())
 }
 else if (eingabe.IsInt32())
 {
-	Console.WriteLine(eingabe.Left(20));
+	Console.WriteLine(eingabe.Left(1));
 	string ausgabe = "Ihre Eingabe \"{0}\" ist eine ganze Zahl".FormatWith(eingabe);
 	Console.WriteLine(ausgabe);
 }
