@@ -10,8 +10,8 @@ namespace Dlekomze.Vererbung
 	{
 		#region Eigenschaften
 		public int Nr { get; set; }
-		public int X { get; set; }
-		public int Y { get; set; }
+		public int PosX { get; set; }
+		public int PosY { get; set; }
 		#endregion
 
 		#region Konstruktoren
@@ -22,9 +22,9 @@ namespace Dlekomze.Vererbung
 		#endregion
 
 		#region Methoden
-		public string AusgebenSvg()
+		public virtual string AusgebenSvg()
 		{
-			return "Spielfled";
+			return $"Spielfled {base.ToString()}";
 		}
 		#endregion
 	}

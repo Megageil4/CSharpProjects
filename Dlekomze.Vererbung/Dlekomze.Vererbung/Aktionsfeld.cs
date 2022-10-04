@@ -14,5 +14,12 @@ namespace Dlekomze.Vererbung
 		{
 			Aktion = String.Empty;
 		}
+
+		#region Methoden
+		public override string AusgebenSvg()
+		{
+			return $"Aktionsfeld: {Aktion} ({base.ToString()})";
+		}
+		#endregion
 	}
 }
