@@ -95,5 +95,10 @@ namespace dlekomze.DBGrundlagen
 				var reader = cmd.ExecuteNonQuery();
 			}
 		}
+
+		//public void AddArtikel(Artikel artikel)
+		//{
+		//		
+		//}
 	}
 }

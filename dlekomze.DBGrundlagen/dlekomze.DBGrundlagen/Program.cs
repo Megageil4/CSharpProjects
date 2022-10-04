@@ -29,7 +29,7 @@
 				Console.WriteLine(artikel);
 			}
 
-			JsonExport.SpeichernArtikelliste(@"D:\Daten\dlekomze\git\csharp\uebungen\dlekomze.DBGrundlagen\dlekomze.DBGrundlagen\jsonArtikel", alleArtikel);
+			JsonExport.SpeichernArtikelliste(@"D:\Daten\dlekomze\git\csharp\uebungen.git\dlekomze.DBGrundlagen\dlekomze.DBGrundlagen\jsonArtikel", alleArtikel);
 
 			bool ok = true;
 			int wgrid = 0;
@@ -62,6 +62,11 @@
 			catch (Exception)
 			{
 				Console.WriteLine("Fehler beim erstellen der Json");
+			}
+
+			foreach (var artikel in JsonExport.ArtikelEinlesen(dateipfad))
+			{
+				Console.WriteLine(artikel);
 			}
 
 			Console.ReadKey();
