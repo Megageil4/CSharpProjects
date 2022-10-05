@@ -8,12 +8,19 @@ namespace Dlekomze.Vererbung
 {
 	public class Aktionsfeld : Spielfeld
 	{
+		#region Eigentschaften
 		public string Aktion { get; set; }
+		#endregion
 
-		public Aktionsfeld() : base()
+		#region Konstruktoren
+		public Aktionsfeld(int nr, int posX, int posY, string aktion)
+			: base(nr, posX, posY)
 		{
-			Aktion = String.Empty;
+			Aktion = aktion;
+			feldFuerAbgelteiteteKlassen = "Ich bin ein Aktionsfeld";
 		}
+		public Aktionsfeld() : this(default,default,default,String.Empty) {}
+		#endregion
 
 		#region Methoden
 		public override string AusgebenSvg()
