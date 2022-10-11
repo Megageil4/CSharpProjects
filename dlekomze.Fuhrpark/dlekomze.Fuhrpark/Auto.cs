@@ -21,17 +21,17 @@ namespace dlekomze.Fuhrpark
 		public int Listenpreis { get; private set; }
 		public int MaximalGeschwindigkeit { get; private set; }
 
-		public double Reaktionsweg
+		public int Reaktionsweg
 		{
-			get { return _geschwindigkeit / 10.0 * 3; }
+			get { return (int)(_geschwindigkeit / 10.0 * 3.0); }
 		}
 
-		public double Bremsweg
+		public int Bremsweg
 		{	
-			get { return Math.Pow((_geschwindigkeit / 10.0),2) ; }
+			get { return (int)Math.Pow((_geschwindigkeit / 10.0),2); }
 		}
 
-		public double Anhalteweg
+		public int Anhalteweg
 		{
 			get { return Reaktionsweg + Bremsweg; }
 		}
