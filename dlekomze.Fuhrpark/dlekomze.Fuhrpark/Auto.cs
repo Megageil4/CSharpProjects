@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dlekomze.Fuhrpark
 {
-	public class Auto
+	public class Auto : Fahrzeug
 	{
 		#region Felder
 		private int _geschwindigkeit;
@@ -15,10 +15,7 @@ namespace dlekomze.Fuhrpark
 		#endregion
 		
 		#region Eigentschaften
-		public string Hersteller { get; private set; }
-		public string Typ { get; private set; }
 		public int Zulassungsjahr { get; private set; }
-		public int Listenpreis { get; private set; }
 		public int MaximalGeschwindigkeit { get; private set; }
 
 		public int Reaktionsweg
@@ -39,7 +36,7 @@ namespace dlekomze.Fuhrpark
 		#endregion
 
 		#region Konstruktoren
-		public Auto(string hersteller, string typ, int zulassungsjahr, int listenpreis, int maximalGeschwindigkeit)
+		public Auto(string hersteller, string typ, int zulassungsjahr, int listenpreis, int maximalGeschwindigkeit) : base(hersteller,typ,listenpreis)
 		{
 			Hersteller = hersteller;
 			Typ = typ;
@@ -66,21 +63,17 @@ namespace dlekomze.Fuhrpark
 										  0, MaximalGeschwindigkeit);
 		}
 
-		public virtual int BerechneWert(int alter)
+		public override int BerechneWert(int jahr)
 		{
 			int preis = Listenpreis;
-			
+			int alter = Zulassungsjahr - jahr;
+
 			for (int i = 0; i < alter; i++)
 			{
 				preis -= (int)Math.Ceiling(preis * 0.12M);
 			}
 
 			return preis;
-		}
-
-		public int BerechneWert()
-		{
-			return BerechneWert(DateTime.Today.Year - Zulassungsjahr);
 		}
 		#endregion
 	}
