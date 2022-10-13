@@ -23,7 +23,7 @@ namespace dlekomze.Fuhrpark
 		public int AktuellerGang
 		{
 			get { return _aktuellerGang; }
-			set { _aktuellerGang = Math.Clamp(value,1,30); }
+			set { _aktuellerGang = Math.Clamp(value,1,AnzahlGaenge); }
 		}
 
 
@@ -48,7 +48,7 @@ namespace dlekomze.Fuhrpark
 		public override int BerechneWert(int jahr)
 		{
 			int preis = Listenpreis;
-			int alter = Kaufjahr - jahr;
+			int alter = jahr - Kaufjahr;
 
 			for (int i = 0; i < alter; i++)
 			{

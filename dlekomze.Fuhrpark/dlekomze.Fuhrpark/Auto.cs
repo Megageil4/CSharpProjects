@@ -66,7 +66,7 @@ namespace dlekomze.Fuhrpark
 		public override int BerechneWert(int jahr)
 		{
 			int preis = Listenpreis;
-			int alter = Zulassungsjahr - jahr;
+			int alter = jahr - Zulassungsjahr;
 
 			for (int i = 0; i < alter; i++)
 			{
