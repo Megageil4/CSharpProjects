@@ -10,16 +10,24 @@ namespace dlekomze.Ballonbauer.Model
 	{
 		public Gas FuellGas { get; set; }
 
-		private double _volumen;
 		public double Volumen
 		{
-			get { return _volumen; }
+			get { return BerechneVolumen(); }
 		}
 
-		protected Kammer(Gas fuellGas = Gas.Luft, double volumen)
+		public double Masse
+		{
+			get { return FuellGas.Dichte * Volumen; }
+		}
+
+
+		protected Kammer(Gas fuellGas)
 		{
 			FuellGas = fuellGas;
-			_volumen = volumen;
+		}
+		protected Kammer()
+		{
+			FuellGas = Gas.Luft;
 		}
 
 		protected abstract double BerechneVolumen();
