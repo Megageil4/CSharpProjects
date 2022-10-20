@@ -14,10 +14,7 @@ namespace dlekomze.Ballonbauer.Model
 		{
 			Radius = radius;
 		}
-		public Kugelkammer(double radius) : base()
-		{
-			Radius = radius;
-		}
+		public Kugelkammer(double radius) : this(Gas.Luft, radius) {}
 
 		protected override double BerechneVolumen()
 		{

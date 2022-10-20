@@ -1,5 +1,4 @@
 ﻿using dlekomze.Ballonbauer.Model;
-using System;
 
 Ballon superflieger, lahmeEnte;
 superflieger = new Ballon();

@@ -25,10 +25,6 @@ namespace dlekomze.Ballonbauer.Model
 		{
 			FuellGas = fuellGas;
 		}
-		protected Kammer()
-		{
-			FuellGas = Gas.Luft;
-		}
 
 		protected abstract double BerechneVolumen();
 	}

@@ -19,12 +19,8 @@ namespace dlekomze.Ballonbauer.Model
 			Breite = breite;
 			Hoehe = hoehe;
 		}
-		public Quaderkammer(double laenge, double breite, double hoehe) : base()
-		{
-			Laenge = laenge;
-			Breite = breite;
-			Hoehe = hoehe;
-		}
+		public Quaderkammer(double laenge, double breite, double hoehe)
+			: this(Gas.Luft, laenge, breite, hoehe) { }
 
 		protected override double BerechneVolumen()
 		{

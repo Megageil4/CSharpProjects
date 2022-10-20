@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="dlekomze.Ballonbauer.Model" Version="1.0.3" />
+    <ProjectReference Include="..\dlekomze.Ballonbauer.Model\dlekomze.Ballonbauer.Model.csproj" />
   </ItemGroup>
 
 </Project>

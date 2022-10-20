@@ -10,11 +10,11 @@ namespace dlekomze.Ballonbauer.Model
 {
 	public class Ballon
 	{
-		private static Sequence _sequence = new Sequence(111,1);
+		private static Sequence _sequence;
 
 		public int SerienNr{ get; private set; }
 
-		public List<Kammer> Kammern { get; set; }
+		public List<Kammer> Kammern { get; private set; }
 
 		public double Volumen
 		{
@@ -25,7 +25,7 @@ namespace dlekomze.Ballonbauer.Model
 				{
 					volumen += kammer.Volumen;
 				}
-				return Math.Round(volumen,2);
+				return Math.Round(volumen,2, MidpointRounding.AwayFromZero);
 			}
 		}
 
@@ -38,7 +38,7 @@ namespace dlekomze.Ballonbauer.Model
 				{
 					masse += kammer.Masse;
 				}
-				return Math.Round(masse,2);
+				return Math.Round(masse,2, MidpointRounding.AwayFromZero);
 			}
 		}
 
@@ -47,6 +47,11 @@ namespace dlekomze.Ballonbauer.Model
 		{
 			SerienNr = _sequence.NextValue();
 			Kammern = new();
+		}
+
+		static Ballon()
+		{
+			_sequence = new Sequence(111, 1);
 		}
 
 		public override string ToString()

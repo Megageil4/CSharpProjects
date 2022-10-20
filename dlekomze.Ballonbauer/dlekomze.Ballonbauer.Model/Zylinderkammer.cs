@@ -17,11 +17,8 @@ namespace dlekomze.Ballonbauer.Model
 			Radius = radius;
 			Hoehe = hohe;
 		}
-		public Zylinderkammer(double radius, double hohe)
-		{
-			Radius = radius;
-			Hoehe = hohe;
-		}
+		public Zylinderkammer(double radius, double hohe) 
+			: this(Gas.Luft, radius, hohe) {}
 
 		protected override double BerechneVolumen()
 		{
