@@ -8,32 +8,20 @@ namespace dlekomze.KfzSteuer.Model
 {
     public class PKW : Fahrzeug
     {
-        public static Dictionary<String, decimal> steuersatz;
-        public string Schadstoffklasse { get; set; }
+        public Schadstoffklasse Schadstoffklasse { get; set; }
 
-        public int Emission
-        {
-            get { return Leistung / Hubraum; }
-        }
+		public int Emission { get; set; }
 
-        public PKW(string kennzeichen, DateTime erstzulassung, int hubraum, int leistung, string schadstoffklasse) 
+		public PKW(string kennzeichen, DateTime erstzulassung, int hubraum, int leistung, int emission,Schadstoffklasse schadstoffklasse) 
             : base(kennzeichen, erstzulassung, hubraum, leistung)
         {
-            Schadstoffklasse = schadstoffklasse;
-        }
-
-        static PKW()
-        {
-            steuersatz = new();
-            steuersatz.Add("Euro1", 10.84M);
-            steuersatz.Add("Euro2", 7.36M);
-            steuersatz.Add("Euro3", 6.75M);
-            steuersatz.Add("Euro4", 6.75M);
+            this.Schadstoffklasse = schadstoffklasse;
+            Emission = emission;
         }
 
         public override decimal BerechneSteuer()
         {
-            return Math.Ceiling(Hubraum / 100.0M) * steuersatz[Schadstoffklasse];
+            return Math.Ceiling(Hubraum / 100.0M) * this.Schadstoffklasse.Steuersatz;
         }
     }
 }
