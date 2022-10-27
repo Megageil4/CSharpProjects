@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Notenverwaltung.Logik\Notenverwaltung.Logik.csproj" />
+  </ItemGroup>
+
 </Project>

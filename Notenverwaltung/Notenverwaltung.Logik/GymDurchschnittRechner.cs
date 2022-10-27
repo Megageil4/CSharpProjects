@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Notenverwaltung.Logik
 {
-	internal class GymDurchschnittRechner : IDurchschnittRechner
+	public class GymDurchschnittRechner : IDurchschnittRechner
 	{
 		public double BerechnenDurchschnitt(IEnumerable<Zensur> zensuren)
 		{
@@ -26,11 +26,11 @@ namespace Notenverwaltung.Logik
 					andere[1]++;
 				}
 			}
-			return sa[0] == 0 ?
+			return Math.Round(sa[0] == 0 ?
 					andere[0] / andere[1] :
 					andere[0] == 0 ?
 						sa[0] / sa[1] :
-						(2 * (sa[0] / sa[1]) + andere[0] / andere[1]) * 3;
+						(2 * (sa[0] / sa[1]) + andere[0] / andere[1]) / 3.0,2,MidpointRounding.AwayFromZero);
 		}
 	}
 }
