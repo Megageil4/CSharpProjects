@@ -2,7 +2,7 @@
 using Notenverwaltung.Logik;
 using Notenverwaltung.Model;
 
-NotenManager notenManager = new NotenManager(new FakeZensurenRepository());
+NotenManager notenManager = new NotenManager(new FileZensurenRepository("MeineNoten.noten"));
 AusgebenAlleZensuren(notenManager);
 Console.WriteLine("Durchschnitt im Fach Prog: " + notenManager.BerechneDurchschnitt("Prog"));
 

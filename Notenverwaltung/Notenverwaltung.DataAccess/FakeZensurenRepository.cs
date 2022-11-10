@@ -16,9 +16,9 @@ namespace Notenverwaltung.DataAccess
 			 new Zensur("Prog", new DateTime(2017, 6, 24), 2, Leistungsart.KA),
 			 new Zensur("Prog", new DateTime(2017, 5, 21), 3, Leistungsart.SA),
 			 new Zensur("Prog", new DateTime(2017, 5, 5), 3, Leistungsart.KA),
-			 new Zensur("Prog", new DateTime(2017, 4, 17), 2, Leistungsart.mdl),
+			 new Zensur("Prog", new DateTime(2017, 4, 17), 2, Leistungsart.MDL),
 			 new Zensur("Prog", new DateTime(2017, 2, 20), 2, Leistungsart.SA),
-			 new Zensur("Prog", new DateTime(2016, 10, 25), 5, Leistungsart.mdl),
+			 new Zensur("Prog", new DateTime(2016, 10, 25), 5, Leistungsart.MDL),
 			 new Zensur("BWL", new DateTime(2017, 4, 13), 5, Leistungsart.KA),
 			 new Zensur("BWL", new DateTime(2016, 9, 20), 3, Leistungsart.SA),
 			 new Zensur("BWL", new DateTime(2017, 5, 14), 4, Leistungsart.SA),
@@ -32,7 +32,7 @@ namespace Notenverwaltung.DataAccess
 			 new Zensur("M", new DateTime(2016, 12, 7), 3, Leistungsart.SA),
 			 new Zensur("M", new DateTime(2017, 4, 9), 3, Leistungsart.KA),
 			 new Zensur("M", new DateTime(2017, 6, 1), 2, Leistungsart.SA),
-			 new Zensur("M", new DateTime(2017, 7, 3), 2, Leistungsart.mdl),
+			 new Zensur("M", new DateTime(2017, 7, 3), 2, Leistungsart.MDL),
 			 new Zensur("Abap", new DateTime(2016, 11, 19), 4, Leistungsart.KA),
 			 new Zensur("Abap", new DateTime(2017, 4, 22), 3, Leistungsart.KA)
 		};

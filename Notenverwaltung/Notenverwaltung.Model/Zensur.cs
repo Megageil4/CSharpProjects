@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Notenverwaltung.Model
 {
-	public class Zensur
+	public class Zensur : IComparable<Zensur>
 	{
 		#region Properties
 		public string Fach { get; set; }
@@ -21,6 +21,25 @@ namespace Notenverwaltung.Model
 			Art = leistungsart;
 		}
 		public Zensur() : this(String.Empty, DateTime.Today, 1, Leistungsart.KA) { }
+
+		public int CompareTo(Zensur? other)
+		{
+			int result = 0;
+			if (other != null)
+			{
+				result = this.Fach.CompareTo(other.Fach);
+				if (result == 0)
+				{
+					result = this.Datum.CompareTo(other.Datum);
+				}
+			}
+			else
+			{
+				result = 1;
+			}
+
+			return result;
+		}
 
 		#endregion
 	}
