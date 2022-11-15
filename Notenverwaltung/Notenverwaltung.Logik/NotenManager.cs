@@ -19,11 +19,7 @@ namespace Notenverwaltung.Logik
 			get { return _durchschnittRechner; }
 			set 
 			{
-				if (value == null)
-				{
-					throw new ArgumentNullException("DurchschnittRechner darf nicht NULL sein");
-				}
-				_durchschnittRechner = value;
+				_durchschnittRechner = value ?? throw new ArgumentNullException("DurchschnittRechner darf nicht NULL sein");
 			}
 		}
 
