@@ -23,7 +23,7 @@ namespace dlekomze.ArbeitenMitInterfaces
 		{
 			Random random = new(Environment.TickCount);
 			for (int i = 0; i < anzahl; i++)
-			{
+			{ 
 				yield return random.Next(Untergrenze, Obergrenze + 1);
 			}
 		}
