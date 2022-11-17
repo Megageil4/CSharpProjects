@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace dlekomze.FileRenamer.Logik
 {
@@ -55,7 +56,7 @@ namespace dlekomze.FileRenamer.Logik
 			int index = 0;
 			foreach (var newFile in GetRenamed())
 			{
-				FilesToRename[index] = newFile;
+				File.Move(FilesToRename[index], newFile);
 				index++;
 			}
 		}
@@ -65,7 +66,7 @@ namespace dlekomze.FileRenamer.Logik
 			List<string> files = FilesToRename;
 			foreach (var rule in Rules)
 			{
-				files = (List<string>)rule.Rename(files);
+				files.AddRange(rule.Rename(files));
 			}
 			return files;
 		}
