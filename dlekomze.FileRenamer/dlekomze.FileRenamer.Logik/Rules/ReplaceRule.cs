@@ -31,7 +31,7 @@ namespace dlekomze.FileRenamer.Logik.Rules
 						newFilename = ReplaceFirst(file, SearchString, ReplaceString);
 						break;
 					case ReplaceOccurance.Last:
-						newFilename = ReplaceFirst((string)file.Reverse(), (string)SearchString.Reverse(), (string)ReplaceString.Reverse());
+						newFilename = (string)ReplaceFirst((string)file.Reverse(), (string)SearchString.Reverse(), (string)ReplaceString.Reverse()).Reverse();
 						break;
 					case ReplaceOccurance.All:
 						newFilename = file.Replace(SearchString, ReplaceString);
@@ -48,7 +48,8 @@ namespace dlekomze.FileRenamer.Logik.Rules
 			int index = file.IndexOf(search);
 			if (index == -1)
 			{
-				throw new ArgumentException($"{file} does not contain {search}");
+				return file;
+				// throw new ArgumentException($"{file} does not contain {search}");
 			}
 			newFilename = file.Remove(index, replace.Length);
 			newFilename = file.Insert(index, replace);
