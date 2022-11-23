@@ -24,14 +24,16 @@ namespace dlekomze.FileRenamer.Logik.Rules
 			foreach (string file in filenames)
 			{
 				string newFilename = "";
-
+				int index = -1;
 				switch (Occurance)
 				{
 					case ReplaceOccurance.First:
-						newFilename = ReplaceFirst(file, SearchString, ReplaceString);
+						index = file.IndexOf(SearchString);
+						newFilename = Replace(file, SearchString, ReplaceString, index);
 						break;
 					case ReplaceOccurance.Last:
-						newFilename = (string)ReplaceFirst((string)file.Reverse(), (string)SearchString.Reverse(), (string)ReplaceString.Reverse()).Reverse();
+						index = file.LastIndexOf(SearchString);
+						newFilename = Replace(file, SearchString, ReplaceString, index);
 						break;
 					case ReplaceOccurance.All:
 						newFilename = file.Replace(SearchString, ReplaceString);
@@ -42,17 +44,16 @@ namespace dlekomze.FileRenamer.Logik.Rules
 			}
 		}
 
-		private static string ReplaceFirst(string file, string search, string replace)
+		private static string Replace(string file, string search, string replace, int index)
 		{
 			string newFilename = "";
-			int index = file.IndexOf(search);
 			if (index == -1)
 			{
 				return file;
-				// throw new ArgumentException($"{file} does not contain {search}");
+				//throw new ArgumentException($"{file} does not contain {search}");
 			}
-			newFilename = file.Remove(index, replace.Length);
-			newFilename = file.Insert(index, replace);
+			newFilename = file.Remove(index, search.Length);
+			newFilename = newFilename.Insert(index, replace);
 
 			return newFilename;
 		}

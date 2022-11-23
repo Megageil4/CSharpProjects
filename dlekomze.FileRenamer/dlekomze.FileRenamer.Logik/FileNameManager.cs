@@ -56,17 +56,24 @@ namespace dlekomze.FileRenamer.Logik
 			int index = 0;
 			foreach (var newFile in GetRenamed())
 			{
-				File.Move(FilesToRename[index], newFile);
+				string file = FilesToRename[index];
+				File.Move(file, $"{file.Remove(file.LastIndexOf('\\'))}\\{newFile}");
 				index++;
 			}
 		}
 
 		private IEnumerable<string> GetRenamed()
 		{
-			List<string> files = FilesToRename;
+			List<string> files = new();
+			foreach (var file in FilesToRename)
+			{
+				files.Add(Path.GetFileName(file));
+			}
 			foreach (var rule in Rules)
 			{
-				files.AddRange(rule.Rename(files));
+				List<string> newfiles = rule.Rename(files).ToList<string>();
+				files.Clear();
+				files.AddRange(newfiles);
 			}
 			return files;
 		}
