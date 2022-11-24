@@ -57,7 +57,9 @@ namespace dlekomze.FileRenamer.Logik
 			foreach (var newFile in GetRenamed())
 			{
 				string file = FilesToRename[index];
-				File.Move(file, $"{file.Remove(file.LastIndexOf('\\'))}\\{newFile}");
+				string path = Path.GetDirectoryName(file) ?? string.Empty;
+				string newPath = Path.Combine(path, newFile);
+				File.Move(file, newPath);
 				index++;
 			}
 		}
