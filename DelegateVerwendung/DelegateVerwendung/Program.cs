@@ -12,6 +12,10 @@ AusgebenWertetabelle(x => 18 * x - 0.5M * 5.4M * x * x, 0, 3, 0.1M);
 AusgebenPersonenliste();
 // -----------------------
 
+PersonRepository repository = new PersonRepository();
+List<Person> personen = repository.Laden();
+AusgebenPersonen("Liste aller Personen", personen, (item) => item.ToString());
+
 Console.ReadKey();
 
 void AusgebenTabelleGerade()
@@ -55,4 +59,11 @@ void AusgebenPersonenliste()
 		Console.WriteLine(item.ToString());
 	}
 	Console.WriteLine();
+}
+
+void AusgebenPersonen(string ueberschrift, List<Person> personen, Func<Person, string> output)
+{
+	Console.WriteLine(ueberschrift);
+	Console.WriteLine(new String('=', 30));
+	personen.ForEach(p => Console.WriteLine(output(p)));
 }
