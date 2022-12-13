@@ -97,8 +97,16 @@ Ausgeben($"Stadion {id}",stadionByID);
 
 // Welches ist das Stadion mit der höchsten Kapazität? Sollten mehrere Stadien die gleiche höchste Kapazität haben, 
 // verwenden Sie das erste gefundene Stadion.
+var hoehsteKapazitaetStadion = stadien
+								.OrderByDescending(s => s.Kapazitaet)
+								.Take(1);
+Ausgeben($"Stadion mit höchster Kapazität", hoehsteKapazitaetStadion);
 
 // Ermitteln Sie die 10 zuletzt eröffneten Stadien. 
+var letzenStadien = stadien
+						.OrderByDescending(s => s.Eroeffnung)
+						.Take(10);
+Ausgeben($"Letzen 10 Stadien", letzenStadien);
 
 Console.ReadKey();
 
