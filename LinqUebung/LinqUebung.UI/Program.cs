@@ -99,8 +99,11 @@ Ausgeben($"Stadion {id}",stadionByID);
 // verwenden Sie das erste gefundene Stadion.
 var hoehsteKapazitaetStadion = stadien
 								.OrderByDescending(s => s.Kapazitaet)
-								.Take(1);
-Ausgeben($"Stadion mit höchster Kapazität", hoehsteKapazitaetStadion);
+								.Take(1)
+								.Single();
+Console.WriteLine("Stadion mit höchster Kapazität");
+Console.WriteLine(hoehsteKapazitaetStadion);
+//Ausgeben($"Stadion mit höchster Kapazität", hoehsteKapazitaetStadion);
 
 // Ermitteln Sie die 10 zuletzt eröffneten Stadien. 
 var letzenStadien = stadien
