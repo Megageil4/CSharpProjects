@@ -39,8 +39,7 @@ public class Ratespiel
 	public event EventHandler<ErgebnisEventArgs>? Verloren;
 	public event EventHandler<FehlerEventArgs>? Fehlversuch;
 	public event EventHandler? NichtAktiv;
-	public event EventHandler<ErgebnisEventArgs>? 
-		Abgrebrochen;
+	public event EventHandler<ErgebnisEventArgs>? Abgrebrochen;
 
 	public Ratespiel(int untergrenze, int obergrenze, int maxVersuche)
 	{
