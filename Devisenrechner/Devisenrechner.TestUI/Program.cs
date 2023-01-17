@@ -1,7 +1,7 @@
 ﻿using Devisenrechner.DataAccess;
 using Devisenrechner.Entity;
 
-DevisenCsvRepository devisenCsvRepository = new(@"D:\Daten\dlekomze\git\csharp\uebungen\Devisenrechner\Devisenrechner.TestUI\Kurse.dat");
+DevisenCsvRepository devisenCsvRepository = new(@"D:\Daten\dlekomze\git\csharp\uebungen.git\Devisenrechner\Devisenrechner.TestUI\Kurse.dat");
 devisenCsvRepository.Einlesen += ((sender, e) => Console.WriteLine("Einlesen gestarted"));
 devisenCsvRepository.Eingelesen += ((sender, e) => Console.WriteLine($"{e.Anzahl} Elemente erflogreich Eingelesen"));
 devisenCsvRepository.Lesefehler += ((sender, e) => Console.WriteLine($"Der Datensatz {e.Zeile} konnte nicht gelesen werden"));

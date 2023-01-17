@@ -35,7 +35,7 @@ namespace Devisenrechner.DataAccess
 
 		public Waehrung? GetByKuerzel(string kuerzel)
 		{
-			return GetAll().Where(w => w.Kuerzel == kuerzel).First();
+			return GetAll().FirstOrDefault(w => w.Kuerzel == kuerzel);
 		}
 
 		private void LoadFromCSV()
@@ -64,6 +64,46 @@ namespace Devisenrechner.DataAccess
 			}
 			OnEingelesen(_waehrungen.Count);
 		}
+
+		public void Add(Waehrung waehrung)
+		{
+			if (_waehrungen is null)
+			{
+				_waehrungen = new();
+				LoadFromCSV();
+			}
+			if (_waehrungen.Any(w => w.Kuerzel == waehrung.Kuerzel))
+			{
+				throw new ArgumentException("Waehrung bereits in der Liste");
+			}
+			_waehrungen.Add(waehrung);
+		}
+
+		public void Delete(string krzl)
+		{
+			if (_waehrungen is null)
+			{
+				_waehrungen = new();
+				LoadFromCSV();
+			}
+			if (!_waehrungen.Any(w => w.Kuerzel == krzl))
+			{
+				throw new ArgumentException("Waehrung nicht in der Liste");
+			}
+			_waehrungen.Remove(_waehrungen.First(w => w.Kuerzel == krzl));
+		}
+
+		public void Save()
+		{
+			if (_waehrungen is null)
+			{
+				_waehrungen = new();
+				LoadFromCSV();
+			}
+
+			//File.WriteAllLines(Pfad, );
+		}
+
 		protected virtual void OnLesefehler(string zeile)
 		{
 			Lesefehler?.Invoke(this, new FehlerEventArgs(zeile));
