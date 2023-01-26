@@ -96,18 +96,26 @@ void AendernBerg()
 		return;
 	}
 
-	Console.Write($"Name [{berg.Name}]: ");
+	string name = GetNewProperty(() => $"Name [{berg.Name}]: ", i => true);
+	berg.Name = name == "" ? berg.Name : name;
+	string hoehe = GetNewProperty(() => $"Hoehe [{berg.Hoehe}]: ", i => int.TryParse(i,out _));
+	berg.Hoehe = hoehe == "" ? berg.Hoehe : int.Parse(hoehe);
+	string erst = GetNewProperty(() => $"Erstbesteigung [{berg.Ersbesteigung}]: ", i => DateTime.TryParse(i, out _));
+	berg.Ersbesteigung = erst == "" ? berg.Ersbesteigung: DateTime.Parse(hoehe);
 }
 
-void GetNewProperty(Berg berg, Func<string,bool> isValidInput) // TODO: continue here
+string GetNewProperty(Func<string> output, Func<string,bool> isValidInput)
 {
 	bool valid = false;
+	string input = "";
 	while (!valid)
 	{
-		Console.Write($"Name [{berg.Name}]: ");
-		string input = Console.ReadLine() ?? "";
+		Console.Write(output());
+		input = Console.ReadLine() ?? "";
 		valid = isValidInput(input) || input == "";
 	}
+
+	return input;
 }
 
 void AusgebenBerg(Berg berg)
