@@ -33,7 +33,7 @@ switch (consoleKey.Key)
 		AendernBerg();
 		break;
 	case ConsoleKey.D6:
-		
+		DeleteBerg();
 		break;
 }
 
@@ -101,7 +101,38 @@ void AendernBerg()
 	string hoehe = GetNewProperty(() => $"Hoehe [{berg.Hoehe}]: ", i => int.TryParse(i,out _));
 	berg.Hoehe = hoehe == "" ? berg.Hoehe : int.Parse(hoehe);
 	string erst = GetNewProperty(() => $"Erstbesteigung [{berg.Ersbesteigung}]: ", i => DateTime.TryParse(i, out _));
-	berg.Ersbesteigung = erst == "" ? berg.Ersbesteigung: DateTime.Parse(hoehe);
+	berg.Ersbesteigung = erst == "" ? berg.Ersbesteigung : DateTime.Parse(erst);
+
+	context.SaveChanges();
+
+	Console.WriteLine("Die Änderungen wurden erfolgreich gespeichert");
+}
+
+void DeleteBerg()
+{
+	Console.Clear();
+	AusgabeUeberschrift("Bestehenden Berg löschen");
+	int id = GetID();
+	Berg? berg = bergRepository.Get(id);
+	if (berg == null)
+	{
+		Console.WriteLine($"Der Berg mit der ID {id} wurde nicht gefunden und kann daher nicht gelöscht werden");
+		return;
+	}
+
+	Console.WriteLine("Wollen Sie den Berg");
+	Console.WriteLine($"{berg.ID,3}: {berg.Name,-30} ({berg.Hoehe} m) Erstbesteigung: {berg.Ersbesteigung}");
+	Console.Write("wirklich löschen(J/ N)? ");
+	if (Console.ReadLine() != "J")
+	{
+		Console.WriteLine();
+		Console.WriteLine("Der Löschvorgang wurde abgebrochen.");
+		return;
+	}
+	context.BergSet.Remove(berg);
+	context.SaveChanges();
+	Console.WriteLine();
+	Console.WriteLine("Der Berg wurde gelöscht.");
 }
 
 string GetNewProperty(Func<string> output, Func<string,bool> isValidInput)
