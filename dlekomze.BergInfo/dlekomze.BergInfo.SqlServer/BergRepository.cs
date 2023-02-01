@@ -23,7 +23,7 @@ namespace dlekomze.BergInfo.SqlServer
 
 		public Berg? Get(int id)
 		{
-			return GetAll().Single(b => b.ID == id);
+			return GetAll().SingleOrDefault(b => b.ID == id);
 		}
 
 		public Berg? GetByName(string name)
