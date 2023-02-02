@@ -6,7 +6,8 @@ namespace ArbeitenMitEFCore.SqlServer;
 public class SchuleDbContext : DbContext
 {
 	#region Properties
-	public DbSet<Schueler> SchuelerSet { get; set; } 
+	public DbSet<Schueler> SchuelerSet { get; set; }
+	public DbSet<Fehlzeit> FehlzeitSet { get; set; }
 	#endregion
 
 	#region Konstruktoren
@@ -21,6 +22,8 @@ public class SchuleDbContext : DbContext
 		modelBuilder.Entity<Schueler>().ToTable("Schueler");
 		modelBuilder.Entity<Schueler>().Property(c => c.Geburtsdatum).HasColumnType("date");
 		modelBuilder.Entity<Schueler>().HasIndex(c => c.Kennung).IsUnique();
+
+		modelBuilder.Entity<Fehlzeit>().ToTable("Fehlzeit");
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

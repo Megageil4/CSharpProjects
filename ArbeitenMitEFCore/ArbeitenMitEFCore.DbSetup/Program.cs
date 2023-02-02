@@ -25,6 +25,7 @@ var neuerSchueler = new Schueler() { Nachname = nachname, Vorname = vorname, Ken
 context.SchuelerSet.Add(neuerSchueler);
 context.SaveChanges();
 
+
 Console.ReadKey();
 
 static void AusgebenSchueler(Schueler? schueler)
