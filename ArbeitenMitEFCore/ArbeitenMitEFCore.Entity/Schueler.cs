@@ -19,6 +19,8 @@ namespace ArbeitenMitEFCore.Entity
 		public string Kennung { get; set; }
 
 		public List<Fehlzeit> FehlzeitSet { get; }
+
+		public List<Arbeitsgruppe> ArbeitsgruppeSet { get; }
 		#endregion
 
 		#region Konstruktoren
@@ -30,6 +32,7 @@ namespace ArbeitenMitEFCore.Entity
 			Geburtsdatum = geburtsdatum;
 			Kennung = kennung;
 			FehlzeitSet = new();
+			ArbeitsgruppeSet = new();
 		}
 
 		public Schueler() : this(default, string.Empty, string.Empty, null, string.Empty) { } 

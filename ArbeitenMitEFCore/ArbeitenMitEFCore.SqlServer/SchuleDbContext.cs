@@ -8,6 +8,7 @@ public class SchuleDbContext : DbContext
 	#region Properties
 	public DbSet<Schueler> SchuelerSet { get; set; }
 	public DbSet<Fehlzeit> FehlzeitSet { get; set; }
+	public DbSet<Arbeitsgruppe> ArbeitsgruppeSet { get; set; }
 	#endregion
 
 	#region Konstruktoren
@@ -24,6 +25,8 @@ public class SchuleDbContext : DbContext
 		modelBuilder.Entity<Schueler>().HasIndex(c => c.Kennung).IsUnique();
 
 		modelBuilder.Entity<Fehlzeit>().ToTable("Fehlzeit");
+
+		modelBuilder.Entity<Arbeitsgruppe>().ToTable("Arbeitsgruppe");
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
