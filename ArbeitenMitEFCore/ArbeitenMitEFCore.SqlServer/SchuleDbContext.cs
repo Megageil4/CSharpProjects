@@ -9,6 +9,8 @@ public class SchuleDbContext : DbContext
 	public DbSet<Schueler> SchuelerSet { get; set; }
 	public DbSet<Fehlzeit> FehlzeitSet { get; set; }
 	public DbSet<Arbeitsgruppe> ArbeitsgruppeSet { get; set; }
+	public DbSet<Vortrag> VortragSet { get; set; }
+	public DbSet<Anmeldung> AnmeldungSet { get; set; }
 	#endregion
 
 	#region Konstruktoren
@@ -27,6 +29,11 @@ public class SchuleDbContext : DbContext
 		modelBuilder.Entity<Fehlzeit>().ToTable("Fehlzeit");
 
 		modelBuilder.Entity<Arbeitsgruppe>().ToTable("Arbeitsgruppe");
+
+		modelBuilder.Entity<Vortrag>().ToTable("Vortrag");
+
+		modelBuilder.Entity<Anmeldung>().ToTable("Anmeldung");
+		modelBuilder.Entity<Anmeldung>().HasKey(a => new { a.SchuelerId, a.VortragId});
 	}
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

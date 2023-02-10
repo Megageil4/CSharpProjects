@@ -4,6 +4,7 @@ using ArbeitenMitEFCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArbeitenMitEFCore.SqlServer.Migrations
 {
     [DbContext(typeof(SchuleDbContext))]
-    partial class SchuleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230210073002_CreateAnmeldung")]
+    partial class CreateAnmeldung
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
