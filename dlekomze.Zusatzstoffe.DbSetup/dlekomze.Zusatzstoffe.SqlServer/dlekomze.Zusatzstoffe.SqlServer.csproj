@@ -14,4 +14,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\dlekomze.Zusatzstoffe.Enitity\dlekomze.Zusatzstoffe.Enitity.csproj" />
+  </ItemGroup>
+
 </Project>

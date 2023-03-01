@@ -15,7 +15,7 @@ public class Stoff
 	public int BewertungID { get; set; }
 	public Bewertung? BewertungNavigation { get; set; }
 
-	public Stoff(int iD, string bezeichnung, string beschreibung, bool genetechnik, bool nanotechnik, int bewertungID, Bewertung? bewertungNavigation)
+	public Stoff(int iD, string bezeichnung, string beschreibung, bool genetechnik, bool nanotechnik, int bewertungID)
 	{
 		ID = iD;
 		Bezeichnung = bezeichnung;
@@ -23,10 +23,9 @@ public class Stoff
 		Genetechnik = genetechnik;
 		Nanotechnik = nanotechnik;
 		BewertungID = bewertungID;
-		BewertungNavigation = bewertungNavigation;
 		HerkunftSet = new List<Herkunft>();
 		VerwendungSet = new List<Verwendung>();
 	}
 
-	public Stoff() : this(default,string.Empty,string.Empty,default,default,default,default) { }
+	public Stoff() : this(default,string.Empty,string.Empty,default,default,default) { }
 }
