@@ -1,10 +1,8 @@
 ﻿using ArbeitenMitEFCore.Entity;
 using ArbeitenMitEFCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
+using System.Security.AccessControl;
 
-
-using SchuleDbContext context = new SchuleDbContext();
-var schueler = context.SchuelerSet.First();
-Console.WriteLine($"{schueler.ID}: {schueler.Nachname}");
 
 //schueler.FehlzeitSet.Add(new Fehlzeit() { Von = new(2023, 1, 31) });
 
@@ -14,11 +12,58 @@ Console.WriteLine($"{schueler.ID}: {schueler.Nachname}");
 
 //context.SaveChanges();
 
-Arbeitsgruppe schulhaus = new() { Bezeichnung = "Unser Schulhaus soll schöner werden" };
-schulhaus.SchuelerSet.Add(schueler);
-context.ArbeitsgruppeSet.Add(schulhaus);
-context.SaveChanges();
+//Arbeitsgruppe schulhaus = new() { Bezeichnung = "Unser Schulhaus soll schöner werden" };
+//schulhaus.SchuelerSet.Add(schueler);
+//context.ArbeitsgruppeSet.Add(schulhaus);
+//context.SaveChanges();
 
+
+using SchuleDbContext context = CreateDbContext();
+//var schueler = context.SchuelerSet.First();
+//Console.WriteLine($"{schueler.ID}: {schueler.Nachname}");
+
+var fehlzeiten = context.FehlzeitSet
+	.Include((f) => f.SchuelerNavigation)
+	.ToList();
+foreach (var fehlzeit in fehlzeiten)
+{
+    Console.WriteLine($"{fehlzeit.Id} : {fehlzeit.Von} {fehlzeit.Grund} ({fehlzeit.SchuelerNavigation?.Nachname}, {fehlzeit.SchuelerNavigation?.Vorname})");
+}
+
+var alleSchuelerMitFehlzeiten = context.SchuelerSet
+	.Include(s => s.FehlzeitSet)
+	.ToList();
+
+foreach (var schueler in alleSchuelerMitFehlzeiten)
+{
+    Console.WriteLine($"{schueler.Vorname} {schueler.Nachname} ({schueler.FehlzeitSet.Count} Fehlzeiten)");
+    foreach (var fehlzeit in schueler.FehlzeitSet)
+    {
+        Console.WriteLine($"	{fehlzeit.Von} {fehlzeit.Grund}");
+    }
+}
+
+var schuelerDetails = context.SchuelerSet
+	.Include(s => s.FehlzeitSet)
+	.Include(s => s.ArbeitsgruppeSet)
+	.Include(s => s.AnmeldungSet)
+		.ThenInclude(a => a.VortragNavigation)
+	.ToList();
+
+foreach (var schueler in schuelerDetails)
+{
+    Console.WriteLine($"{schueler.Vorname} ({schueler.FehlzeitSet.Count} F)");
+    Console.WriteLine($"Arbeitsgruppen:");
+    foreach (var ag in schueler.ArbeitsgruppeSet)
+    {
+		Console.WriteLine($"	{ag.Bezeichnung}");
+    }
+    Console.WriteLine("Anmeldungen:");
+    foreach (var an in schueler.AnmeldungSet)
+    {
+        Console.WriteLine($"    {an.Anmeldezeitpunkt} - {an.VortragNavigation?.Bezeichnung}");
+    }
+}
 
 Console.ReadKey();
 
@@ -60,3 +105,13 @@ Console.ReadKey();
 //		Console.WriteLine($"ID nicht gefunden");
 //	}
 //}
+
+SchuleDbContext CreateDbContext()
+{
+	var optionsBuilder = new DbContextOptionsBuilder<SchuleDbContext>();
+	optionsBuilder.LogTo(m => Console.WriteLine(m),
+		new[] { DbLoggerCategory.Database.Command.Name },
+				Microsoft.Extensions.Logging.LogLevel.Information);
+
+	return new SchuleDbContext(optionsBuilder.Options);
+}
