@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dlekomze.Zusatzstoffe.SqlServer;
 
@@ -10,9 +11,11 @@ using dlekomze.Zusatzstoffe.SqlServer;
 namespace dlekomze.Zusatzstoffe.SqlServer.Migrations
 {
     [DbContext(typeof(ZusatzstoffeDbContext))]
-    partial class ZusatzstoffeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230308123118_Zusatzstoffe-Data")]
+    partial class ZusatzstoffeData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,8 +125,7 @@ namespace dlekomze.Zusatzstoffe.SqlServer.Migrations
 
                     b.Property<string>("Beschreibung")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BewertungID")
                         .HasColumnType("int");
@@ -144,26 +146,6 @@ namespace dlekomze.Zusatzstoffe.SqlServer.Migrations
                     b.HasIndex("BewertungID");
 
                     b.ToTable("Stoff", "ENummern");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Beschreibung = "Säurungsmittel auf pflanzlicher Basis. Natürliche Substanz im menschlichen Stoffwechsel. Wird mit Hilfe von Schimmelpilzen aus zuckerhaltigen Substanzen gewonnen. Kann auch gentechnisch hergestellt werden. Der zunehmende Einsatz in Getränken und \"sauren\" Süßigkeiten führt immer häufiger zu Zahnschäden bei Kindern und Erwachsenen, weil der Zahnschmelz von der Säure angegriffen wird, zum Beispiel durch Eistee in Nuckelflaschen für Kleinkinder. Auch für Bio-Lebensmittel zugelassen. Vom Verzehr in größeren Mengen ist abzuraten.",
-                            BewertungID = 1,
-                            Bezeichnung = "Citronensäure",
-                            Genetechnik = false,
-                            Nanotechnik = true
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Beschreibung = "Lecithin verbessert die Knet- und Formeigenschaften von Teigen und verlangsamt das Altbackenwerden von Gebäck. In Margarine sorgt Lecithin dafür, dass sie in der Pfanne nicht spritzt.",
-                            BewertungID = 1,
-                            Bezeichnung = "Lecithin",
-                            Genetechnik = true,
-                            Nanotechnik = true
-                        });
                 });
 
             modelBuilder.Entity("dlekomze.Zusatzstoffe.Enitity.Verwendung", b =>
@@ -176,8 +158,7 @@ namespace dlekomze.Zusatzstoffe.SqlServer.Migrations
 
                     b.Property<string>("Beschreibung")
                         .IsRequired()
-                        .HasMaxLength(600)
-                        .HasColumnType("nvarchar(600)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Bezeichnung")
                         .IsRequired()

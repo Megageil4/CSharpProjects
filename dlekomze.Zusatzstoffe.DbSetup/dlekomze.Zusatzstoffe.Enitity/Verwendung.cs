@@ -7,6 +7,7 @@ public class Verwendung
 	public int ID { get; set; }
 	[StringLength(50)]
 	public string Bezeichnung { get; set; }
+	[StringLength(600)]
 	public string Beschreibung { get; set; }
 	public List<Stoff> StoffSet { get; set; }
 

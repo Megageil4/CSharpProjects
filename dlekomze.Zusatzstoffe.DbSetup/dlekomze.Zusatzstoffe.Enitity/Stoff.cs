@@ -7,6 +7,7 @@ public class Stoff
 	public int ID { get; set; }
 	[StringLength(50)]
 	public string Bezeichnung { get; set; }
+	[StringLength(1000)]
 	public string Beschreibung { get; set; }
 	public bool Genetechnik { get; set; }
 	public bool Nanotechnik { get; set; }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dlekomze.Zusatzstoffe.SqlServer;
 
@@ -10,9 +11,11 @@ using dlekomze.Zusatzstoffe.SqlServer;
 namespace dlekomze.Zusatzstoffe.SqlServer.Migrations
 {
     [DbContext(typeof(ZusatzstoffeDbContext))]
-    partial class ZusatzstoffeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230308124426_Zusatzstoffe-Stoff")]
+    partial class ZusatzstoffeStoff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,8 +125,7 @@ namespace dlekomze.Zusatzstoffe.SqlServer.Migrations
 
                     b.Property<string>("Beschreibung")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BewertungID")
                         .HasColumnType("int");
@@ -176,8 +178,7 @@ namespace dlekomze.Zusatzstoffe.SqlServer.Migrations
 
                     b.Property<string>("Beschreibung")
                         .IsRequired()
-                        .HasMaxLength(600)
-                        .HasColumnType("nvarchar(600)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Bezeichnung")
                         .IsRequired()
