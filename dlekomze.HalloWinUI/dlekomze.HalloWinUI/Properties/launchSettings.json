@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dlekomze.HalloWinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "dlekomze.HalloWinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

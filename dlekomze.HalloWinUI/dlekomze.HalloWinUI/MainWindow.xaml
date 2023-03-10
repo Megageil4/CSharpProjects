@@ -1,0 +1,21 @@
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Window
+    x:Class="dlekomze.HalloWinUI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dlekomze.HalloWinUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel>
+        <Button x:Name="myButton" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Background="Wheat"
+            Click="myButton_Click">Hier müssen Sie klicken</Button>
+        <Button>Speichern</Button>
+    </StackPanel>
+</Window>
