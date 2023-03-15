@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dlekomze.ReverseString (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "dlekomze.ReverseString (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
