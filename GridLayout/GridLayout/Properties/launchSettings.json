@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GridLayout (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "GridLayout (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
