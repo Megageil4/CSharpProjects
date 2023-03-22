@@ -20,7 +20,8 @@
                  MaxLength="40"
                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                  x:Name="EingabeTextBox"
-                 AccessKey="E"></TextBox>
+                 AccessKey="E"
+                 TextChanged="OnEingabeTextChanged"></TextBox>
         <RadioButtons Header="Ausgabeoptionen" 
                       Margin="12,4"
                       MaxColumns="3"
@@ -43,6 +44,8 @@
                 HorizontalAlignment="Center"
                 Padding="8"
                 AccessKey="U"
-                Click="OnEingabeUmkehren"></Button>
+                Click="OnEingabeUmkehren"
+                x:Name="EingabeUmkehrenButton"
+                IsEnabled="False"></Button>
     </StackPanel>
 </winuiex:WindowEx>
