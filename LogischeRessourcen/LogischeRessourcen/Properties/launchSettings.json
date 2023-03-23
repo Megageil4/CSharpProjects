@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "LogischeRessourcen (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "LogischeRessourcen (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
