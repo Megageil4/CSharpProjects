@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dlekomze.TextToString (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "dlekomze.TextToString (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
