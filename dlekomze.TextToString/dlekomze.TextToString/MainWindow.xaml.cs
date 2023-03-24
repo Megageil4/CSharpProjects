@@ -30,5 +30,25 @@ namespace dlekomze.TextToString
 		{
 			this.InitializeComponent();
 		}
+
+		private void OnUmwandeln(object sender, RoutedEventArgs e)
+		{
+			string varname = VariableTextBox.Text;
+			string output = $"string {varname} = String.Empty;{Environment.NewLine}";
+			foreach (var s in EingabeTextBox.Text.Split("\r"))
+			{
+				output += $"{varname} += \"{s}\";{Environment.NewLine}";
+			}
+			AusgabeTextBox.Text = output;
+        }
+
+		private void InputTextChanged(object sender, TextChangedEventArgs e)
+		{
+			UmwandelnButton.IsEnabled = false;
+			if (EingabeTextBox.Text != "" && VariableTextBox.Text != "")
+			{
+				UmwandelnButton.IsEnabled = true;
+			}
+		}
 	}
 }
