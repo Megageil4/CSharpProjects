@@ -2,18 +2,17 @@
 <!-- Licensed under the MIT License. -->
 
 <Application
-    x:Class="dlekomze.TextToString.App"
+    x:Class="dlekomze.RadiusSlider.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:dlekomze.TextToString">
+    xmlns:local="using:dlekomze.RadiusSlider">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <!-- Other merged dictionaries here -->
-                <ResourceDictionary Source="Resources/Brushes.xaml"/>
-                <ResourceDictionary Source="Resources/Fonts.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <!-- Other app resources here -->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

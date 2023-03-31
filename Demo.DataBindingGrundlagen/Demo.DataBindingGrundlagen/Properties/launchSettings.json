@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Demo.DataBindingGrundlagen (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Demo.DataBindingGrundlagen (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

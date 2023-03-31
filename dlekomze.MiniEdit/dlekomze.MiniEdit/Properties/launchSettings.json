@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dlekomze.MiniEdit (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "dlekomze.MiniEdit (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

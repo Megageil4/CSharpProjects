@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dlekomze.RadiusSlider (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "dlekomze.RadiusSlider (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

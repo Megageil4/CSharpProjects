@@ -19,7 +19,7 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace dlekomze.TextToString
+namespace Demo.DataBindingGrundlagen
 {
 	/// <summary>
 	/// An empty window that can be used on its own or navigated to within a Frame.
@@ -29,30 +29,27 @@ namespace dlekomze.TextToString
 		public MainWindow()
 		{
 			this.InitializeComponent();
+			this.Title = "DataBinding: Grundlagen und Mode-Eigenschaft";
 		}
 
-		private void OnUmwandeln(object sender, RoutedEventArgs e)
+		private void ButtonOneTime_Click(object sender, RoutedEventArgs e)
 		{
-			string varname = VariableTextBox.Text;
-			string output = $"string {varname} = String.Empty;{Environment.NewLine}";
-			foreach (var s in EingabeTextBox.Text.Split("\r"))
-			{
-				output += $"{varname} += \"{s}\";{Environment.NewLine}";
-			}
-			AusgabeTextBox.Text = output;
-        }
-
-		private void InputTextChanged(object sender, TextChangedEventArgs e)
-		{
-			UmwandelnButton.IsEnabled = false;
-			if (EingabeTextBox.Text != "" && VariableTextBox.Text != "")
-			{
-				UmwandelnButton.IsEnabled = true;
-			}
+			OneTimeTextBox.Text += " klick.";
 		}
-		private void OnDarkMode(object sender, RoutedEventArgs e)
+
+		private void ButtonOneWay_Click(object sender, RoutedEventArgs e)
 		{
-			MainGrid.RequestedTheme = DarkModeSwitch.IsOn ? ElementTheme.Dark : ElementTheme.Light;
+			OneWayTextBox.Text += " klick.";
+		}
+
+		private void ButtonTwoWay_Click(object sender, RoutedEventArgs e)
+		{
+			TwoWayTextBox.Text += " klick.";
+		}
+		private void ButtonTwoWayPropertyChanged_Click(object sender, RoutedEventArgs e)
+		{
+			TwoWayPropertyChangedTextBox.Text += " klick.";
 		}
 	}
 }
+
