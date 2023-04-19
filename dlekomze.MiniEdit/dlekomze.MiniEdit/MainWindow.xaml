@@ -1,4 +1,4 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
 <Window
@@ -19,28 +19,67 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBox Grid.Row="0"
-                 AcceptsReturn="True"/>
+                 AcceptsReturn="True"
+                 Margin="12"
+                 FontSize="{x:Bind TextSizeSlider.Value,Mode=OneWay}"
+                 CharacterSpacing="{x:Bind (x:Int32) CharcterSpacingTextbox.Value, Mode=OneWay}"
+                 IsSpellCheckEnabled="{x:Bind SpellingCheckbox.IsChecked.Value, Mode=OneWay}"
+                 IsReadOnly="{x:Bind ReadOnlyCheckbox.IsChecked.Value, Mode=OneWay}"
+                 AccessKey="E"/>
         <Expander Grid.Row="1"
                   Header="Einstellungen"
                   HorizontalAlignment="Stretch"
-                  HorizontalContentAlignment="Stretch">
+                  HorizontalContentAlignment="Stretch"
+                  Margin="12"
+                  AccessKey="X">
             <Expander.Content>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0">
+                    <Border Grid.Column="0" Style="{StaticResource Border}">
                         <StackPanel HorizontalAlignment="Stretch">
-                            <Slider TickFrequency="10"
-                                    TickPlacement="BottomRight"/>
-                            <NumberBox/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Slider TickFrequency="5"
+                                        TickPlacement="BottomRight"
+                                        Minimum="5"
+                                        Maximum="50"
+                                        Grid.Column="0"
+                                        Value="20"
+                                        x:Name="TextSizeSlider"
+                                        Header="Schriftgröße"
+                                        AccessKey="G"/>
+                                <TextBlock Grid.Column="1"
+                                           Text="{x:Bind TextSizeSlider.Value, Mode=OneWay}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Margin="12,20,0,0"/>
+                            </Grid>
+                            <NumberBox x:Name="CharcterSpacingTextbox"
+                                       Header="CharcterSpacing"
+                                       SpinButtonPlacementMode="Compact"
+                                       Minimum="0"
+                                       Maximum="1000"
+                                       SmallChange="50"
+                                       LargeChange="250"
+                                       Value="0"
+                                       AccessKey="C"/>
                         </StackPanel>
                     </Border>
-                    <Border Grid.Column="1">
+                    <Border Grid.Column="1" Style="{StaticResource Border}">
                         <StackPanel>
-                            <CheckBox Content="ReadOnly"/>
-                            <CheckBox Content="Rechtschreibpr�fung"/>
+                            <CheckBox Content="ReadOnly"
+                                      x:Name="ReadOnlyCheckbox"
+                                      AccessKey="R"/>
+                            <CheckBox Content="Rechtschreibprüfung"
+                                      x:Name="SpellingCheckbox"
+                                      IsChecked="True"
+                                      AccessKey="S"/>
                         </StackPanel>
                     </Border>
                 </Grid>

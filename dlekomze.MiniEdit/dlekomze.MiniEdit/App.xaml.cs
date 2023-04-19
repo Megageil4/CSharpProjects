@@ -46,6 +46,7 @@ namespace dlekomze.MiniEdit
 		{
 			m_window = new MainWindow();
 			m_window.Activate();
+			m_window.Title = "Mini-Editor";
 		}
 
 		private Window m_window;
