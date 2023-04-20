@@ -1,0 +1,32 @@
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="Demo.ChangeNotification.Pages.EinzelnesObjektPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo.ChangeNotification.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<StackPanel>
+		<TextBox Header="Bezeichnung" 
+                 Text="{x:Bind Produkt.Bezeichnung, Mode=TwoWay}" 
+                 Margin="8"/>
+		<NumberBox Header="Nettopreis" 
+                   Value="{x:Bind Produkt.Nettopreis, Mode=TwoWay}" 
+                   Margin="8"/>
+		<TextBox Header="Bruttopreis" 
+                 Text="{x:Bind Produkt.Bruttopreis, Mode=OneWay}" 
+                 Margin="8" 
+                 IsReadOnly="True" 
+                 Background="{ThemeResource TextBoxDisabledBackgroundThemeBrush}"/>
+		<Button Content="Preis um 10% erhöhen" 
+                Margin="8" 
+                Click="Button_Click" 
+                HorizontalAlignment="Stretch" 
+                Background="LightGreen"/>
+	</StackPanel>
+</Page>

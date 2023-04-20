@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Demo.ChangeNotification (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Demo.ChangeNotification (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

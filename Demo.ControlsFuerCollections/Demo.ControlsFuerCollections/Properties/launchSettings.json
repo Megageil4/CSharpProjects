@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Demo.ControlsFuerCollections (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Demo.ControlsFuerCollections (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
