@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ZeitzonenInfo (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ZeitzonenInfo (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
