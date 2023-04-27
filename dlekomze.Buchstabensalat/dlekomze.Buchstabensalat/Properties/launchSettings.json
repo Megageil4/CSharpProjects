@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dlekomze.Buchstabensalat (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "dlekomze.Buchstabensalat (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

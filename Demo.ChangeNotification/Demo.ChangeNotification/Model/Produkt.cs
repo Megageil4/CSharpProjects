@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace Demo.ChangeNotification.Model
 				if (_bezeichnung != value)
 				{
 					_bezeichnung = value;
-					OnPropertyChanged(nameof(Bezeichnung));
+					OnPropertyChanged();
 				}
 			}
 		}
@@ -33,7 +34,7 @@ namespace Demo.ChangeNotification.Model
 				if (_nettopreis != value)
 				{
 					_nettopreis = value;
-					OnPropertyChanged(nameof(Nettopreis));
+					OnPropertyChanged();
 					OnPropertyChanged(nameof(Bruttopreis));
 				}
 			}
@@ -48,7 +49,7 @@ namespace Demo.ChangeNotification.Model
 			_bezeichnung = Bezeichnung;
 		}
 
-		protected virtual void OnPropertyChanged(string propertyName)
+		protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
