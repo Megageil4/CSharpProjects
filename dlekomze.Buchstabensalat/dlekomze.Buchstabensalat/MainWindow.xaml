@@ -22,6 +22,7 @@
         <TextBox Header="Ausgabe"
                  Margin="12"
                  FontSize="25"
-                 FontWeight="Bold"/>
+                 FontWeight="Bold"
+                 IsReadOnly="True"/>
     </StackPanel>
 </Window>
