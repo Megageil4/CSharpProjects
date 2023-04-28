@@ -30,7 +30,7 @@ namespace Demo.Mvvm.ViewModel
 		public ObservableCollection<string> AllMessages { get; }
 
 		public bool CanAddMessage => Message != string.Empty;
-		public bool ContainesMessages => AllMessages.Count > 0;
+		public bool CanDeleteMessages => AllMessages.Count > 0;
 
 		public MeldungenViewModel()
 		{
@@ -42,13 +42,13 @@ namespace Demo.Mvvm.ViewModel
 		{
 			AllMessages.Add(Message);
 			Message = string.Empty;
-			OnPropertyChanged(nameof(ContainesMessages));
+			OnPropertyChanged(nameof(CanDeleteMessages));
 		}
 
 		public void DeleteAllMessages()
 		{
 			AllMessages.Clear();
-			OnPropertyChanged(nameof(ContainesMessages));
+			OnPropertyChanged(nameof(CanDeleteMessages));
 		}
 
 		#region PropertyChanged

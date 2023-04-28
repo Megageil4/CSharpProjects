@@ -38,7 +38,7 @@
                 Background="LightPink"
                 Grid.Row="2"
                 AccessKey="L" 
-                IsEnabled="{x:Bind ViewModel.ContainesMessages}"
+                IsEnabled="{x:Bind ViewModel.CanDeleteMessages, Mode=OneWay}"
                 Click="{x:Bind ViewModel.DeleteAllMessages}"/>
         <TextBlock Text="Alle Meldungen"
                    Margin="12 12 12 0"
@@ -49,7 +49,7 @@
                   Grid.Row="4"
                   Margin="12 12 12 0" 
                   ItemsSource="{x:Bind ViewModel.AllMessages}"/>
-        <TextBlock Text="Anzahl der Meldungen: "
+        <TextBlock Text="{x:Bind x:String.Format('Anzahl der Meldungen: {0}', ViewModel.AllMessages.Count),Mode=OneWay}"
                    FontWeight="Bold"
                    Grid.Row="5"
                    Margin="12" />
