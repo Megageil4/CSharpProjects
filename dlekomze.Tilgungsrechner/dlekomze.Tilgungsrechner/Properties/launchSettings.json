@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dlekomze.Tilgungsrechner (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "dlekomze.Tilgungsrechner (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

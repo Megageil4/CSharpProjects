@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace dlekomze.Buchstabensalat.ViewModel
 			{ 
 				_eingabe = value;
 				OnPropertyChanged();
+				OnPropertyChanged(nameof(CanWortMischen));
 			}
 		}
 
@@ -27,16 +29,28 @@ namespace dlekomze.Buchstabensalat.ViewModel
 		public string Ausgabe
 		{
 			get { return _ausgabe; }
-			private set { _ausgabe = value; }
+			private set 
+			{ 
+				_ausgabe = value;
+				OnPropertyChanged();
+			}
 		}
 
 
 		public bool CanWortMischen => Eingabe.Length >= 3 
 								   && Eingabe.Length <= 30;
 
+		public BuchstabensalatViewModel()
+		{
+			Eingabe = "Regenbogen";
+		}
+
 		public void WortMischen()
 		{
-
+			Random rng = new();
+			Ausgabe = new string(Eingabe.ToCharArray()
+								 .OrderBy(x => rng.Next())
+								 .ToArray());
 		}
 
 		#region PropertyChanged

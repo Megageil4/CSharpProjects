@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-using dlekomze.Buchstabensalat.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -20,15 +19,12 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace dlekomze.Buchstabensalat.View
+namespace dlekomze.Tilgungsrechner.View
 {
-	public sealed partial class BuchstabensalatView : UserControl
+	public sealed partial class TilgungsrechnerView : UserControl
 	{
-		public BuchstabensalatViewModel ViewModel { get; set; }
-
-		public BuchstabensalatView()
+		public TilgungsrechnerView()
 		{
-			ViewModel = new();
 			this.InitializeComponent();
 		}
 	}

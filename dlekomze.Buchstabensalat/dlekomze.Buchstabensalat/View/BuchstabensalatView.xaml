@@ -13,17 +13,21 @@
     <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
         <TextBox Header="Eingabe"
                  Margin="12"
-                 FontSize="25"
-                 x:Name="Eingabe"/>
+                 FontSize="24"
+                 x:Name="Eingabe"
+                 Text="{x:Bind ViewModel.Eingabe, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Button Content="Wort mischen"
                 Margin="12"
-                FontSize="25"
+                FontSize="24"
                 Background="LightGreen"
-                HorizontalAlignment="Stretch"/>
+                HorizontalAlignment="Stretch"
+                IsEnabled="{x:Bind ViewModel.CanWortMischen, Mode=OneWay}"
+                Click="{x:Bind ViewModel.WortMischen}"/>
         <TextBox Header="Ausgabe"
                  Margin="12"
-                 FontSize="25"
+                 FontSize="24"
                  FontWeight="Bold"
-                 IsReadOnly="True"/>
+                 IsReadOnly="True"
+                 Text="{x:Bind ViewModel.Ausgabe, Mode=OneWay}"/>
     </StackPanel>
 </UserControl>
