@@ -1,25 +1,65 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using dlekomze.Tilgungsrechner.Model;
+using Microsoft.UI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace dlekomze.Tilgungsrechner.ViewModel
 {
-	public class TilgungViewModel
+	public class TilgungViewModel : INotifyPropertyChanged
 	{
-		public double Darlehen { get; set; }
-		public double AnfaenglicheTilgung { get; set; }
-		public double Zinssatz { get; set; }
-		public ObservableCollection<TilgungsZahlung> Tilgungen{ get; set; }
-		public RelayCommand BerechneTilgungsplan { get; }
-		public RelayCommand Initialisieren { get; set; }
-		public double? Annunitaet 
+		private double darlehen;
+		private double anfaenglicheTilgung;
+		private double zinssatz;
+
+		public double Darlehen
+		{
+			get => darlehen; 
+			set
+			{
+				if (darlehen != value)
+				{
+					darlehen = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+		public double AnfaenglicheTilgung
+		{
+			get => anfaenglicheTilgung;
+			set
+			{
+				if (anfaenglicheTilgung != value)
+				{
+					anfaenglicheTilgung = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+		public double Zinssatz 
 		{ 
-			get 
+			get => zinssatz;
+			set
+			{
+				if (zinssatz != value)
+				{
+					zinssatz = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+		public ObservableCollection<TilgungsZahlung> Tilgungen { get; set; }
+		public RelayCommand BerechneTilgungsplanCommand { get; }
+		public RelayCommand InitialisierenCommand { get; }
+		public double? Annunitaet
+		{
+			get
 			{
 				if (double.IsNaN(Darlehen))
 				{
@@ -33,11 +73,13 @@ namespace dlekomze.Tilgungsrechner.ViewModel
 		public TilgungViewModel()
 		{
 			Tilgungen = new();
-			BerechneTilgungsplan = new
+			BerechneTilgungsplanCommand = new
 				(
-					() => 
+					() =>
 					{
 						decimal rest = (decimal)Darlehen;
+						decimal lastRest = rest;
+						int jahr = 1;
 						while (rest > 0)
 						{
 							decimal annunitaet = (decimal)Annunitaet;
@@ -47,17 +89,21 @@ namespace dlekomze.Tilgungsrechner.ViewModel
 								annunitaet = (decimal)Annunitaet + rest;
 								rest = 0;
 							}
-							//add
+							Tilgungen.Add(new TilgungsZahlung(
+								jahr, lastRest, lastRest * (decimal)(Zinssatz / 100.0), lastRest - rest, annunitaet
+								));
+							jahr++;
+							lastRest = rest;
 						}
-						Tilgungen.Clear();
+						//Tilgungen.Clear();
 					},
-					() => !double.IsNaN(Darlehen)
-					   && !double.IsNaN(AnfaenglicheTilgung) 
+					   () => !double.IsNaN(Darlehen)
+					   && !double.IsNaN(AnfaenglicheTilgung)
 					   && !double.IsNaN(Zinssatz));
 
-			Initialisieren = new
+			InitialisierenCommand = new
 				(
-					() => 
+					() =>
 					{
 						Tilgungen.Clear();
 						Darlehen = double.NaN;
@@ -66,5 +112,13 @@ namespace dlekomze.Tilgungsrechner.ViewModel
 					}
 				);
 		}
+
+		#region INotifyPropertyChanged
+		public event PropertyChangedEventHandler PropertyChanged;
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new(propertyName));
+		}
+		#endregion
 	}
 }

@@ -7,7 +7,7 @@ using Demo.MvvmCommand.MvvmHelper;
 
 namespace Demo.Mvvm.ViewModel;
 
-public class MeldungenViewModel : INotifyPropertyChanged
+public class MeldungenViewModel : ObservableObject
 {
 	private string _message;
 
@@ -16,10 +16,11 @@ public class MeldungenViewModel : INotifyPropertyChanged
 		get { return _message; }
 		set
 		{
-			if (_message != value)
+			if (SetProperty(ref 
+				_message, value))
 			{
-				_message = value;
-				OnPropertyChanged();
+				//_message = value;
+				//OnPropertyChanged();
 				AddMessageCommand.NotifyCanExecuteChanged();
 				
 			}
@@ -49,13 +50,5 @@ public class MeldungenViewModel : INotifyPropertyChanged
 		Message = String.Empty;
 		AllMessages = new();
 	}
-
-	#region INotifyPropertyChanged
-	public event PropertyChangedEventHandler PropertyChanged;
-	protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-	{
-		PropertyChanged?.Invoke(this, new(propertyName));
-	}
-	#endregion
 }
 

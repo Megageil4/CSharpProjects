@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using dlekomze.Tilgungsrechner.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -23,9 +24,11 @@ namespace dlekomze.Tilgungsrechner.View
 {
 	public sealed partial class TilgungsrechnerView : UserControl
 	{
+		public TilgungViewModel ViewModel;
 		public TilgungsrechnerView()
 		{
 			this.InitializeComponent();
+			ViewModel = new();
 		}
 	}
 }
