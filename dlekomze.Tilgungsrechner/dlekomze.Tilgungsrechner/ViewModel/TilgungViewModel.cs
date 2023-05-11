@@ -27,6 +27,8 @@ namespace dlekomze.Tilgungsrechner.ViewModel
 				{
 					darlehen = value;
 					OnPropertyChanged();
+					OnPropertyChanged(nameof(Annunitaet));
+					BerechneTilgungsplanCommand.NotifyCanExecuteChanged();
 				}
 			}
 		}
@@ -39,6 +41,8 @@ namespace dlekomze.Tilgungsrechner.ViewModel
 				{
 					anfaenglicheTilgung = value;
 					OnPropertyChanged();
+					OnPropertyChanged(nameof(Annunitaet));
+					BerechneTilgungsplanCommand.NotifyCanExecuteChanged();
 				}
 			}
 		}
@@ -51,6 +55,8 @@ namespace dlekomze.Tilgungsrechner.ViewModel
 				{
 					zinssatz = value;
 					OnPropertyChanged();
+					OnPropertyChanged(nameof(Annunitaet));
+					BerechneTilgungsplanCommand.NotifyCanExecuteChanged();
 				}
 			}
 		}
@@ -61,7 +67,9 @@ namespace dlekomze.Tilgungsrechner.ViewModel
 		{
 			get
 			{
-				if (double.IsNaN(Darlehen))
+				if (double.IsNaN(Darlehen)
+				 || double.IsNaN(AnfaenglicheTilgung)
+				 || double.IsNaN(Zinssatz))
 				{
 					return null;
 				}
@@ -77,6 +85,7 @@ namespace dlekomze.Tilgungsrechner.ViewModel
 				(
 					() =>
 					{
+						Tilgungen.Clear();
 						decimal rest = (decimal)Darlehen;
 						decimal lastRest = rest;
 						int jahr = 1;
@@ -84,18 +93,19 @@ namespace dlekomze.Tilgungsrechner.ViewModel
 						{
 							decimal annunitaet = (decimal)Annunitaet;
 							rest -= (decimal)Annunitaet;
+							decimal zinsen = lastRest * (decimal)(Zinssatz / 100.0);
+							rest += zinsen;
 							if (rest < 0)
 							{
 								annunitaet = (decimal)Annunitaet + rest;
 								rest = 0;
 							}
 							Tilgungen.Add(new TilgungsZahlung(
-								jahr, lastRest, lastRest * (decimal)(Zinssatz / 100.0), lastRest - rest, annunitaet
+								jahr, lastRest, zinsen, lastRest - rest, annunitaet
 								));
 							jahr++;
 							lastRest = rest;
 						}
-						//Tilgungen.Clear();
 					},
 					   () => !double.IsNaN(Darlehen)
 					   && !double.IsNaN(AnfaenglicheTilgung)
