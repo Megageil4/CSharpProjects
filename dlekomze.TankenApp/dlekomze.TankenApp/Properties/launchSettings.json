@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dlekomze.TankenApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "dlekomze.TankenApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
