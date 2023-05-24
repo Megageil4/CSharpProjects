@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using dlekomze.TankenApp.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -24,11 +25,13 @@ namespace dlekomze.TankenApp.View
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
-	public sealed partial class BlankPage1 : Page
+	public sealed partial class TankPage : Page
 	{
-		public BlankPage1()
+		public TankViewModel TankViewModel { get; set; }
+		public TankPage()
 		{
 			this.InitializeComponent();
+			TankViewModel = new();
 		}
 	}
 }

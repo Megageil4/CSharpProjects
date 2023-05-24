@@ -1,0 +1,44 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="dlekomze.TankenApp.View.TankPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dlekomze.TankenApp.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <DatePicker Header="Datum"
+                    Margin="12"
+                    SelectedDate="{x:Bind TankViewModel.Datum, Mode=TwoWay}"/>
+        <NumberBox Header="Kilometerstand"
+                   Margin="12"
+                   Value="{x:Bind TankViewModel.Kilometerstand, Mode=TwoWay}"/>
+        <NumberBox Header="Gefahrene Kilomter"
+                   Margin="12"
+                   Value="{x:Bind TankViewModel.GefahreneKM, Mode=TwoWay}"/>
+        <NumberBox Header="Preis"
+                   Margin="12"
+                   Value="{x:Bind TankViewModel.Preis, Mode=TwoWay}"/>
+        <NumberBox Header="getankte Liter"
+                   Margin="12"
+                   Value="{x:Bind TankViewModel.GetankteLiter, Mode=TwoWay}"/>
+        <Button HorizontalAlignment="Center"
+                Command="{x:Bind TankViewModel.DatenSpeichernCommand,Mode=TwoWay}">
+            <StackPanel Orientation="Horizontal">
+                <SymbolIcon Symbol="Save"
+                            Margin="6"/>
+                <TextBlock Text="Speichern"
+                           Margin="6"/>
+            </StackPanel>
+        </Button>
+        <InfoBar Severity="Success" 
+                 Title="Datensatz erfolgreich gespeichert"
+                 Message="{x:Bind TankViewModel.InfoMessage, Mode=TwoWay}"
+                 IsOpen="{x:Bind TankViewModel.IsInfoShowing, Mode=TwoWay}"/>
+    </StackPanel>
+</Page>
