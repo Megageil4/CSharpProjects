@@ -28,7 +28,7 @@
                    Margin="12"
                    Value="{x:Bind TankViewModel.GetankteLiter, Mode=TwoWay}"/>
         <Button HorizontalAlignment="Center"
-                Command="{x:Bind TankViewModel.DatenSpeichernCommand,Mode=TwoWay}">
+                Command="{x:Bind TankViewModel.DatenSpeichernCommand}">
             <StackPanel Orientation="Horizontal">
                 <SymbolIcon Symbol="Save"
                             Margin="6"/>
@@ -38,7 +38,7 @@
         </Button>
         <InfoBar Severity="Success" 
                  Title="Datensatz erfolgreich gespeichert"
-                 Message="{x:Bind TankViewModel.InfoMessage, Mode=TwoWay}"
-                 IsOpen="{x:Bind TankViewModel.IsInfoShowing, Mode=TwoWay}"/>
+                 Message="{x:Bind TankViewModel.InfoMessage, Mode=OneWay}"
+                 IsOpen="{x:Bind TankViewModel.IsInfoShowing, Mode=OneWay}"/>
     </StackPanel>
 </Page>

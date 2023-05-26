@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using dlekomze.TankenApp.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,80 +10,108 @@ using System.Threading.Tasks;
 
 namespace dlekomze.TankenApp.ViewModel
 {
-	public class TankViewModel
+	public class TankViewModel : INotifyPropertyChanged
 	{
-		private DateTimeOffset? datum;
-		private double kilometerstand;
-		private double gefahreneKM;
-		private double preis;
-		private double getankteLiter;
-		private bool isInfoShowing;
-		private string infoMessage;
+		private DateTimeOffset? _datum;
+		private double _kilometerstand;
+		private double _gefahreneKM;
+		private double _preis;
+		private double _getankteLiter;
+		private bool _isInfoShowing;
+		private string _infoMessage;
 
 		public TankBelegDBContext TankBelegContext { get; set; }
 
 		public DateTimeOffset? Datum 
 		{
-			get => datum;
+			get => _datum;
 			set 
 			{
-				OnPropertyChanged();
-				datum = value; 
+				if (value != _datum)
+				{
+					_datum = value;
+					OnPropertyChanged();
+					DatenSpeichernCommand.NotifyCanExecuteChanged();
+				}
 			} 
 		}
 		public double Kilometerstand
 		{
-			get => kilometerstand;
+			get => _kilometerstand;
 			set 
 			{
-				OnPropertyChanged();
-				kilometerstand = value; 
+				if (value != _kilometerstand)
+				{
+					_kilometerstand = value;
+					OnPropertyChanged();
+					DatenSpeichernCommand.NotifyCanExecuteChanged();
+				}
 			}
 		}
 		public double GefahreneKM 
 		{
-			get => gefahreneKM;
+			get => _gefahreneKM;
 			set
 			{
-				OnPropertyChanged();
-				gefahreneKM = value;
+				if (value != _gefahreneKM)
+				{
+					_gefahreneKM = value;
+					OnPropertyChanged();
+					DatenSpeichernCommand.NotifyCanExecuteChanged();
+				}
 			}
 		}
 		public double Preis 
 		{ 
-			get => preis;
+			get => _preis;
 			set
 			{
-				OnPropertyChanged();
-				preis = value;
+				if (value != _preis)
+				{
+					_preis = value;
+					OnPropertyChanged();
+					DatenSpeichernCommand.NotifyCanExecuteChanged();
+				}
 			}
 		}
 		public double GetankteLiter 
 		{
-			get => getankteLiter;
+			get => _getankteLiter;
 			set
 			{
-				OnPropertyChanged();
-				getankteLiter = value;
+				if (value != _getankteLiter)
+				{
+					_getankteLiter = value;
+					OnPropertyChanged();
+					DatenSpeichernCommand.NotifyCanExecuteChanged();
+				}
 			}
 		}
 		public RelayCommand DatenSpeichernCommand { get; set; }
 		public bool IsInfoShowing 
 		{
-			get => isInfoShowing;
+			get => _isInfoShowing;
 			set
 			{
-				OnPropertyChanged();
-				isInfoShowing = value;
+				if (value != _isInfoShowing)
+				{
+					_isInfoShowing = value;
+					OnPropertyChanged();
+					DatenSpeichernCommand.NotifyCanExecuteChanged();
+				}
 			} 
 		}
 		public string InfoMessage 
 		{
-			get => infoMessage;
+			get => _infoMessage;
 			set
 			{
-				OnPropertyChanged();
-				infoMessage = value;
+				if (value != _infoMessage)
+				{
+					_infoMessage = value;
+					OnPropertyChanged();
+					DatenSpeichernCommand.NotifyCanExecuteChanged();
+				}
 			}
 		}
 
@@ -92,6 +121,8 @@ namespace dlekomze.TankenApp.ViewModel
 			DatenSpeichernCommand = new(
 				() =>
 					{
+						//TankBelegContext.Add(new Tankbeleg(0,_datum.Value.DateTime,
+						//					 Kilometerstand,GefahreneKM,Preis,GetankteLiter));
 						InfoMessage = $"Der Durchschnittsverbrauch lag bei {GefahreneKM} Liter/100 km";
 						IsInfoShowing = true;
 					},

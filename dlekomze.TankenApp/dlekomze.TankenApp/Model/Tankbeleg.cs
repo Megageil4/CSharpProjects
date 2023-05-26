@@ -14,5 +14,15 @@ namespace dlekomze.TankenApp.Model
 		public double GefahreneKilometer { get; set; }
 		public double Preis { get; set; }
 		public double Liter { get; set; }
+
+		public Tankbeleg(int tankbelegID, DateTime datum, double kilometerstand, double gefahreneKilometer, double preis, double liter)
+		{
+			TankbelegID = tankbelegID;
+			Datum = datum;
+			Kilometerstand = kilometerstand;
+			GefahreneKilometer = gefahreneKilometer;
+			Preis = preis;
+			Liter = liter;
+		}
 	}
 }
