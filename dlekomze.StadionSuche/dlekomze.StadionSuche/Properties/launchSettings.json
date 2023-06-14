@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "dlekomze.StadionSuche (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "dlekomze.StadionSuche (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
