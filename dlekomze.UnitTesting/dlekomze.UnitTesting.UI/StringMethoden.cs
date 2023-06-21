@@ -39,5 +39,10 @@ namespace dlekomze.UnitTesting.UI
 
 			return path.Substring(pos).Replace(Path.DirectorySeparatorChar.ToString(),"");
 		}
+
+		public static string GetFileName(string path)
+		{
+			return "";			
+		}
 	}
 }
