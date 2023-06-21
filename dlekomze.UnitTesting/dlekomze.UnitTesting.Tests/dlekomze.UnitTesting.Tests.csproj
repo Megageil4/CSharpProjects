@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\dlekomze.UnitTesting.BL\dlekomze.UnitTesting.BL.csproj" />
+    <ProjectReference Include="..\dlekomze.UnitTesting.UI\dlekomze.UnitTesting.UI.csproj" />
   </ItemGroup>
 
 </Project>
