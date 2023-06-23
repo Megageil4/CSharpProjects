@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Demo.DependencyInjection (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Demo.DependencyInjection (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
