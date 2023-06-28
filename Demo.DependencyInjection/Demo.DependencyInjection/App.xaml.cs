@@ -3,6 +3,7 @@
 
 using Demo.DependencyInjection.Data;
 using Demo.DependencyInjection.ViewModel;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -31,6 +32,9 @@ namespace Demo.DependencyInjection
 	/// </summary>
 	public partial class App : Application
 	{
+		private ServiceProvider _servicePorvider;
+		private Window m_window;
+
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
 		/// executed, and as such is the logical equivalent of main() or WinMain().
@@ -38,6 +42,17 @@ namespace Demo.DependencyInjection
 		public App()
 		{
 			this.InitializeComponent();
+			ServiceCollection services = new();
+			ConfigureServices(services);
+			_servicePorvider = services.BuildServiceProvider();
+		}
+
+		private void ConfigureServices(ServiceCollection services)
+		{
+			services.AddTransient<MainWindow>();
+			services.AddTransient<MainViewModel>();
+			services.AddTransient<AnzeigenStadienViewModel>();
+			services.AddTransient<IStadionReader, CsvStadionReader>();
 		}
 
 		/// <summary>
@@ -46,12 +61,9 @@ namespace Demo.DependencyInjection
 		/// <param name="args">Details about the launch request and process.</param>
 		protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
 		{
-			m_window = new MainWindow(new MainViewModel(
-									  new AnzeigenStadienViewModel(
-									  new CsvStadionReader())));
+			m_window = _servicePorvider.GetService<MainWindow>();
 			m_window.Activate();
 		}
-
-		private Window m_window;
+		
 	}
 }

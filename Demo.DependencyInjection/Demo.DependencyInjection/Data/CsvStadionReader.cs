@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Demo.DependencyInjection.Data;
@@ -15,9 +16,9 @@ public class CsvStadionReader : IStadionReader
 	{
 		_dateiPfad = Path.Combine(AppContext.BaseDirectory, @"Stadion.csv");
 	}
-	public List<Stadion> LadenStadien(string land)
+	public List<string> ReadCSV()
 	{
-		var stadien = new List<Stadion>();
+		List<string> lines = new();
 		bool istErsteZeile = true;
 		foreach (var zeile in File.ReadAllLines(_dateiPfad, Encoding.UTF8))
 		{
@@ -26,11 +27,20 @@ public class CsvStadionReader : IStadionReader
 				istErsteZeile = false;
 				continue; // Überschriften in der Datei ignorieren
 			}
-			var teile = zeile.Split(',');
-			if (!(teile[4].ToUpperInvariant() == land.ToUpperInvariant() || land == String.Empty))
+			if (IsValidLine(zeile))
 			{
-				continue;
+				lines.Add(zeile);
 			}
+		}
+		return lines;
+	}
+
+	public List<Stadion> ParseCSV(IEnumerable<string> csvStrings)
+	{
+		var stadien = new List<Stadion>();
+		foreach (string zeile in csvStrings)
+		{
+			var teile = zeile.Split(',');
 
 			Stadion stadion = new()
 			{
@@ -44,6 +54,32 @@ public class CsvStadionReader : IStadionReader
 
 			stadien.Add(stadion);
 		}
+		return stadien;
+	}
+
+	public IEnumerable<Stadion> FilterByLand(IEnumerable<Stadion> stadien, Func<Stadion,bool> isInFilter)
+	{
+		foreach (var stadion in stadien)
+		{
+			if (isInFilter(stadion))
+			{
+				yield return stadion;
+			}
+		}
+	} 
+
+	private bool IsValidLine(string line)
+	{
+		return !(string.IsNullOrEmpty(line)
+			  || string.IsNullOrWhiteSpace(line)
+			  || line.StartsWith("/"));
+	}
+
+	public List<Stadion> LadenStadien(string land)
+	{
+		List<string> lines = ReadCSV();
+		List<Stadion> stadien = ParseCSV(lines);
+		stadien = FilterByLand(stadien,land);
 		return stadien;
 	}
 }
