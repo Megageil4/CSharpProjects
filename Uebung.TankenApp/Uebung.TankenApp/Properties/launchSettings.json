@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Uebung.TankenApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Uebung.TankenApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

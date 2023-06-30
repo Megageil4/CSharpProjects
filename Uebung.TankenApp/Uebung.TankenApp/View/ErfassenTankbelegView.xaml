@@ -1,0 +1,35 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="Uebung.TankenApp.View.ErfassenTankbelegView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Uebung.TankenApp.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Language="de-DE" >
+
+    <StackPanel>
+		<StackPanel >
+			<DatePicker Header="Datum" Margin="12" Date="{x:Bind ViewModel.Datum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<NumberBox Header="Kilometerstand" Margin="12" Value="{x:Bind ViewModel.Kilometerstand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<NumberBox Header="Gefahrene Kilometer" Margin="12" Value="{x:Bind ViewModel.GefahreneKM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<NumberBox Header="Preis" Margin="12" Value="{x:Bind ViewModel.Preis, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<NumberBox Header="getankte Liter" Margin="12" Value="{x:Bind ViewModel.GetankteLiter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+		</StackPanel>
+		<Button Padding="12" HorizontalAlignment="Center" Command="{x:Bind ViewModel.SpeichernCommand}">
+			<StackPanel Orientation="Horizontal">
+				<SymbolIcon Symbol="Save" />
+				<TextBlock Text="Speichern" Margin="8 0 0 0"/>
+			</StackPanel>
+		</Button >
+		<InfoBar 
+    IsOpen="{x:Bind ViewModel.IsOpen, Mode=OneWay}"
+    Severity="Success"
+    Title="Datensatz erfolgreich gespeichert"
+    Message="{x:Bind ViewModel.Meldung, Mode=OneWay}" 
+			Margin="12"/>
+	</StackPanel>
+</Page>
